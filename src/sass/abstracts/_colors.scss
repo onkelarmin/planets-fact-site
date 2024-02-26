@@ -1,0 +1,50 @@
+$light: (
+  "neutral": (
+    "000": hsl(0 0% 100%),
+    "400": hsl(240 6% 54%),
+    "700": hsl(240 17% 26%),
+    "900": hsl(240 67% 8%),
+    "1000": hsl(0 0% 0%),
+  ),
+  "accent": (
+    "mercury-400": hsl(194 48% 49%),
+    "mercury-200": hsl(196 83% 93%),
+
+    "venus-400": hsl(33 82% 61%),
+    "venus-200": hsl(39 88% 73%),
+
+    "earth-400": hsl(263 67% 51%),
+    "earth-200": hsl(238 99% 66%),
+
+    "mars-400": hsl(10 63% 51%),
+    "mars-200": hsl(12 100% 64%),
+
+    "jupiter-400": hsl(2 68% 53%),
+    "jupiter-200": hsl(27 75% 70%),
+
+    "saturn-400": hsl(17 73% 46%),
+    "saturn-200": hsl(40 96% 70%),
+
+    "uranus-400": hsl(169 73% 44%),
+    "uranus-200": hsl(168 82% 67%),
+
+    "neptune-400": hsl(222 87% 56%),
+    "neptune-200": hsl(222 95% 63%),
+  ),
+);
+
+// contextual color tokens
+$color-neutral-000: var(--neutral-000);
+$color-neutral-400: var(--neutral-400);
+$color-neutral-700: var(--neutral-700);
+$color-neutral-900: var(--neutral-900);
+$color-neutral-1000: var(--neutral-1000);
+
+$color-accent-mercury: var(--accent-mercury);
+$color-accent-venus: var(--accent-venus);
+$color-accent-earth: var(--accent-earth);
+$color-accent-mars: var(--accent-mars);
+$color-accent-jupiter: var(--accent-jupiter);
+$color-accent-saturn: var(--accent-saturn);
+$color-accent-uranus: var(--accent-uranus);
+$color-accent-neptune: var(--accent-neptune);

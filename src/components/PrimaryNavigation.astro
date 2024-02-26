@@ -1,0 +1,151 @@
+---
+// Library imports
+import { Icon } from "astro-icon/components"
+
+// Component imports
+import PrimaryNavigationItem from "./PrimaryNavigationItem.astro"
+
+// Data import
+import allPlanets from "../data/data.json"
+---
+
+<nav class="primary-nav">
+  <span id="primary-nav__label" hidden>Navigation</span>
+  <button
+    id="btnToggle"
+    class="primary-nav__toggle"
+    aria-expanded="false"
+    aria-labelledby="primary-nav__label"
+  >
+    <Icon name="hamburger" width={24} height={17} />
+  </button>
+  <div
+    class="primary-nav__menu"
+    role="dialog"
+    aria-labelledby="primary-nav__label"
+  >
+    <ul class="primary-nav__list">
+      {
+        allPlanets.map((planet) => (
+          <PrimaryNavigationItem planetData={planet} />
+        ))
+      }
+    </ul>
+  </div>
+</nav>
+
+<style lang="scss">
+  @use "../sass/abstracts" as *;
+
+  .primary-nav {
+    &__list {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    &__toggle {
+      display: grid;
+      place-items: center;
+      background: none;
+      border: none;
+      transition: opacity 250ms ease-in;
+
+      @include mq(medium) {
+        display: none;
+      }
+    }
+
+    &__toggle[aria-expanded="true"] {
+      opacity: 0.5;
+    }
+
+    &__toggle[aria-expanded="true"] + .primary-nav__menu {
+      translate: 0;
+    }
+  }
+
+  // Mobile
+
+  @include mq(medium, max) {
+    .primary-nav {
+      &__menu {
+        position: fixed;
+        top: 5.8125rem;
+        left: $container-min-margin-inline-small-screens;
+        right: $container-min-margin-inline-small-screens;
+        bottom: 0;
+        translate: 100vw 0;
+        transition: translate 0.5s ease-in-out;
+      }
+
+      &__list {
+        flex-direction: column;
+        text-align: start;
+        gap: 0;
+      }
+    }
+  }
+</style>
+
+<script>
+  // Import body-scroll-lock
+  import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock"
+
+  // Variables
+  const btnToggle = document.querySelector("#btnToggle")! as HTMLButtonElement
+  const primaryNavMenu = document.querySelector(
+    ".primary-nav__menu"
+  )! as HTMLElement
+  const main = document.querySelector("main")!
+  const body = document.querySelector("body")!
+  const media = window.matchMedia("(width < 45em)")
+  const isMobile = media.matches
+
+  // Functions
+  function setupPrimaryNav(isMobile: boolean) {
+    if (isMobile) {
+      // is mobile
+      primaryNavMenu.setAttribute("inert", "")
+      primaryNavMenu.style.transition = "none"
+    } else {
+      // is tablet/desktop
+      primaryNavMenu.removeAttribute("inert")
+    }
+  }
+
+  function openMobileMenu() {
+    btnToggle.setAttribute("aria-expanded", "true")
+    primaryNavMenu.removeAttribute("inert")
+    primaryNavMenu.removeAttribute("style")
+    main.setAttribute("inert", "")
+    disableBodyScroll(body)
+    btnToggle.focus()
+  }
+  function closeMobileMenu() {
+    btnToggle.setAttribute("aria-expanded", "false")
+    primaryNavMenu.setAttribute("inert", "")
+    main.removeAttribute("inert")
+    enableBodyScroll(body)
+    btnToggle.focus()
+
+    setTimeout(() => {
+      primaryNavMenu.style.transition = "none"
+    }, 500)
+  }
+
+  setupPrimaryNav(isMobile)
+
+  // EventListeners
+  btnToggle.addEventListener("click", () => {
+    if (btnToggle.getAttribute("aria-expanded") === "false") {
+      openMobileMenu()
+    } else {
+      closeMobileMenu()
+    }
+  })
+  media.addEventListener("change", (e) => {
+    setupPrimaryNav(e.matches)
+  })
+</script>

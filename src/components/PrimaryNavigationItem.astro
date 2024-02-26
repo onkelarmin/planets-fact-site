@@ -1,0 +1,119 @@
+---
+// Library imports
+import { Icon } from "astro-icon/components"
+
+// Type imports
+import type { PlanetData } from "./PlanetUI.astro"
+
+type Props = {
+  planetData: PlanetData
+}
+
+const { planetData } = Astro.props
+
+const planetColor = `var(--accent-${planetData.name.toLowerCase()}-200)`
+const planetColorHover = `var(--accent-${planetData.name.toLowerCase()}-400)`
+---
+
+<li>
+  <a href={`/${planetData.name.toLowerCase()}`}>
+    <span class="round"></span>
+    {planetData.name}
+    <Icon name="chevron" width={4} height={8} />
+  </a>
+</li>
+
+<style lang="scss" define:vars={{ planetColor, planetColorHover }}>
+  @use "../sass/abstracts" as *;
+
+  li {
+    position: relative;
+    line-height: 1;
+
+    @include mq(medium, max) {
+      width: 100%;
+
+      &:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        left: 0;
+        bottom: 0;
+        background-color: $color-neutral-700;
+        opacity: 0.7;
+      }
+    }
+  }
+
+  a {
+    display: inline-block;
+    position: relative;
+    font-size: $font-size-200;
+    font-weight: $font-weight-bold;
+    line-height: 1.5625rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: $color-neutral-000;
+    opacity: 0.75;
+    padding-block: 2rem 1.75rem;
+    transition: opacity 200ms ease-in;
+
+    @include mq(large, max) {
+      padding-block-start: 0;
+    }
+
+    @include mq(medium, max) {
+      display: grid;
+      grid-template-columns: auto auto 1fr;
+      gap: 1.5rem;
+      align-items: center;
+      line-height: 1;
+      padding-block: 1.25rem;
+      letter-spacing: 1.36px;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 4px;
+      background-color: var(--planetColorHover);
+      transform: scaleX(0);
+      transition: transform 200ms ease-in;
+    }
+
+    &:focus {
+      outline: 0px solid transparent;
+    }
+
+    &:is(:hover, :focus-visible) {
+      opacity: 1;
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  .round {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: var(--planetColor);
+
+    @include mq(medium) {
+      display: none;
+    }
+  }
+
+  [data-icon="chevron"] {
+    justify-self: end;
+
+    @include mq(medium) {
+      display: none;
+    }
+  }
+</style>

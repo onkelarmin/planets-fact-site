@@ -1,0 +1,48 @@
+$font-family-base: 'Spartan', system-ui, sans-serif;
+$font-family-accent: 'Antonio', system-ui, sans-serif;
+
+$font-sizes: (
+  'small': (
+    '900': 5rem, // Heading 1
+    '700': 2.5rem, // Heading 2
+    '600': 1.75rem, // Logo
+    '400': 0.6875rem, // Body
+    '300': 0.75rem, // Heading 3 / Buttons
+    '200': 0.9375rem, // Nav-Links
+    '100': 0.6875rem, // Heading 4
+  ),
+  'medium': (
+    '900': 3rem, // Heading 1
+    '700': 1.5rem, // Heading 2
+    '600': 1.75rem,  // Logo
+    '400': 0.6875rem, // Body
+    '300': 0.5625rem, // Heading 3 / Buttons
+    '200': 0.6875rem, // Nav-Links
+    '100': 0.5rem, // Heading 4
+  ),
+  'large': (
+    '900': 2.5rem, // Heading 1
+    '700': 1.25rem, // Heading 2
+    '600': 1.75rem,  // Logo
+    '400': 0.875rem, // Body
+    '300': 0.5625rem, // Heading 3 / Buttons
+    '200': 0.6875rem, // Nav-Links
+    '100': 0.5rem, // Heading 4
+  ),
+);
+
+$font-size-100: var(--fs-100);
+$font-size-200: var(--fs-200);
+$font-size-300: var(--fs-300);
+$font-size-400: var(--fs-400);
+$font-size-600: var(--fs-600);
+$font-size-700: var(--fs-700);
+$font-size-900: var(--fs-900);
+
+$-fw-400: 400;
+$-fw-500: 500;
+$-fw-700: 700;
+
+$font-weight-default: $-fw-400;
+$font-weight-medium: $-fw-500;
+$font-weight-bold: $-fw-700;

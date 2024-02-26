@@ -1,0 +1,27 @@
+---
+// Layout import
+import BaseLayout from "../layouts/BaseLayout.astro"
+
+// Type imports
+import type { GetStaticPaths } from "astro"
+
+// Component imports
+import PlanetUI from "../components/PlanetUI.astro"
+
+// Data imports
+import allPlanets from "../data/data.json"
+
+export const getStaticPaths = (() => {
+  return allPlanets.map((p) => {
+    return {
+      params: { planet: p.name.toLowerCase() },
+      props: { p },
+    }
+  })
+}) satisfies GetStaticPaths
+
+const { planet } = Astro.params
+const { p } = Astro.props
+---
+
+<BaseLayout><PlanetUI planetData={p} /></BaseLayout>

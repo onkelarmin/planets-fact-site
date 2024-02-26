@@ -1,0 +1,50 @@
+---
+// Component imports
+import PrimaryNavigation from "./PrimaryNavigation.astro"
+---
+
+<header>
+  <div class="inner container" data-type="wide">
+    <p class="logo">The planets</p>
+    <PrimaryNavigation />
+  </div>
+</header>
+
+<style lang="scss">
+  @use "../sass/abstracts" as *;
+  @use "sass:color";
+
+  header {
+    border-bottom: 1px solid $color-neutral-700;
+
+    .inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      @include mq(medium) {
+        flex-direction: column;
+      }
+
+      @include mq(large) {
+        flex-direction: row;
+      }
+    }
+
+    .logo {
+      font-family: $font-family-accent;
+      font-size: $font-size-600;
+      font-weight: $font-weight-medium;
+      letter-spacing: -1.05px;
+      text-transform: uppercase;
+
+      @include mq(large, max) {
+        padding-block: 2rem 2.5rem;
+      }
+
+      @include mq(medium, max) {
+        padding-block: 1rem;
+      }
+    }
+  }
+</style>

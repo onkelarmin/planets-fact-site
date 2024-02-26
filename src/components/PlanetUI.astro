@@ -1,0 +1,33 @@
+---
+// Component imports
+import Header from "./Header.astro"
+
+type Subcategory = {
+  content: string
+  source: string
+}
+
+export type PlanetData = {
+  name: string
+  overview: Subcategory
+  structure: Subcategory
+  geology: Subcategory
+  rotation: string
+  revolution: string
+  radius: string
+  temperature: string
+  images: {
+    planet: string
+    internal: string
+    geology: string
+  }
+}
+
+type Props = {
+  planetData: PlanetData
+}
+
+const { planetData } = Astro.props
+---
+
+<Header planetData={planetData} />

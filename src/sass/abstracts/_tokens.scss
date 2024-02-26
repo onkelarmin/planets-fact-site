@@ -1,0 +1,69 @@
+@use 'colors' as *;
+@use 'typography' as *;
+
+$active-theme: $light;
+$enable-media-query-dark-mode: false;
+
+
+// layout
+$container-max-width: 69.375rem;
+$container-max-width-narrow: 47rem;
+$container-max-width-wide: 85rem;
+
+$container-min-margin-inline-small-screens: 1.5rem;
+$container-min-margin-inline-medium-screens: 2.5rem;
+$container-min-margin-inline-large-screens: 3rem;
+
+$section-padding-block-small-screens: 8rem;
+$section-padding-block-medium-screens: 10rem;
+$section-padding-block-large-screens: 10rem;
+
+$grid-gap: 1rem;
+$flex-group-gap: 1rem;
+
+$flow-space-small-screens: 1rem;
+$flow-space-medium-screens: 1.25rem;
+$flow-space-large-screens: 1.5rem;
+
+
+// body
+$body-font-family: $font-family-base;
+$body-font-size: $font-size-400;
+$body-line-height: 1.78;
+$body-font-weight: $font-weight-default;
+$body-text-color: $color-neutral-000;
+$body-background-color: $color-neutral-900;
+
+
+// Headings
+$heading-font-family-default: $font-family-accent;
+$heading-font-weight-default: $font-weight-medium;
+$heading-color-default: $color-neutral-000;
+$heading-line-height-default: 1.1;
+$heading-letter-spacing-default: normal;
+$heading-text-transform-default: uppercase;
+
+
+// buttons
+// $button-font-family: $body-font-family;
+// $button-font-size: $font-size-400;
+// $button-font-weight: $font-weight-bold;
+// $button-text-transform: uppercase;
+// $button-padding: 0.75em 2em;
+// $button-border: 0;
+// $button-border-radius: $border-radius-1;
+
+// $button-primary-color: $color-neutral-100;
+// $button-primary-background: $color-primary-700;
+// $button-primary-color-hover: $color-neutral-100;
+// $button-primary-background-hover: $color-primary-800;
+// $button-accent-color: $color-neutral-100;
+// $button-accent-background: $color-accent-400;
+// $button-accent-color-hover: $color-neutral-100;
+// $button-accent-background-hover: $color-accent-500;
+
+// animations
+$animation-transition-default: opacity 400ms linear, transform 500ms ease-in;
+$animation-slide-in-transition: $animation-transition-default;
+$animation-slide-in-offset: 5rem;
+$animation-fade-in-transition: $animation-transition-default;

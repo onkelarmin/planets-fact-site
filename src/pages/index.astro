@@ -1,0 +1,17 @@
+---
+// Layout import
+import BaseLayout from "../layouts/BaseLayout.astro"
+
+// Component imports
+import PlanetUI from "../components/PlanetUI.astro"
+
+// Data imports
+import allPlanets from "../data/data.json"
+
+const initialPlanet = "Earth"
+const [initialPlanetData] = allPlanets.filter((p) => p.name === initialPlanet)
+---
+
+<BaseLayout>
+  <PlanetUI planetData={initialPlanetData} />
+</BaseLayout>
