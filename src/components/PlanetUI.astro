@@ -1,5 +1,6 @@
 ---
 // Component imports
+import Button from "./Button.astro"
 import Header from "./Header.astro"
 
 type Subcategory = {
@@ -28,6 +29,70 @@ type Props = {
 }
 
 const { planetData } = Astro.props
+
+const planetColor = `var(--accent-${planetData.name.toLowerCase()}-400)`
 ---
 
 <Header planetData={planetData} />
+<main class="container">
+  <ul class="buttons">
+    <li>
+      <Button
+        category="overview"
+        color={planetColor}
+        aria-selected="true"
+        data-num="1"
+      />
+    </li>
+    <li>
+      <Button
+        category="structure"
+        color={planetColor}
+        prefix="internal"
+        data-num="2"
+      />
+    </li>
+    <li>
+      <Button
+        category="geology"
+        color={planetColor}
+        prefix="surface"
+        data-num="3"
+      />
+    </li>
+  </ul>
+  <div class="image"></div>
+  <div class="content"></div>
+  <div class="stats"></div>
+</main>
+
+<style lang="scss">
+  @use "../sass/abstracts" as *;
+  main {
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      list-style: none;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: -$container-min-margin-inline-small-screens;
+        width: 100vw;
+        height: 1px;
+        background-color: $color-neutral-700;
+      }
+
+      @include mq(medium) {
+        flex-direction: column;
+        gap: 1rem;
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+</style>

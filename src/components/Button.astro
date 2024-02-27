@@ -1,0 +1,92 @@
+---
+type Props = {
+  category: string
+  color: string
+  classes?: string
+  prefix?: string
+}
+
+const { category, color, prefix = "", classes, ...rest } = Astro.props
+
+const planetColor = color
+---
+
+<button class:list={["btn", classes]} {...rest}>
+  <span class="prefix">{prefix}</span>
+  <span class="category">{category}</span>
+</button>
+
+<style lang="scss" define:vars={{ planetColor }}>
+  @use "../sass/abstracts" as *;
+
+  .btn {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 1;
+    font-family: $font-family-base;
+    font-size: $font-size-300;
+    font-weight: $font-weight-bold;
+    letter-spacing: 1.93px;
+    text-transform: uppercase;
+    background-color: transparent;
+    border: none;
+    color: $color-neutral-400;
+    padding: 1.25rem 0.5rem;
+    transition: color 250ms ease-in;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      left: 0;
+      bottom: 0;
+      background-color: var(--planetColor);
+      transform: scaleX(0);
+      transition: transform 250ms ease-in;
+    }
+
+    &[aria-selected="true"] {
+      color: $color-neutral-000;
+    }
+
+    &[aria-selected="true"]::after {
+      transform: scaleY(1);
+    }
+
+    .prefix {
+      @include mq(medium, max) {
+        display: none;
+      }
+    }
+
+    @include mq(medium) {
+      border: 1px solid $color-neutral-700;
+      color: $color-neutral-000;
+      padding: 0.5rem 1.25rem;
+      transition: background-color 200ms ease-in;
+
+      &::before {
+        content: "0" attr(data-num);
+        color: $color-neutral-400;
+        margin-inline-end: 0.75rem;
+      }
+
+      &::after {
+        display: none;
+      }
+
+      &[aria-selected="true"] {
+        background-color: var(--planetColor);
+      }
+
+      &:not([aria-selected="true"]):is(:hover, :focus-visible) {
+        background-color: $color-neutral-700;
+      }
+    }
+  }
+</style>
+
+<script></script>

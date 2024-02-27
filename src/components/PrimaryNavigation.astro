@@ -72,10 +72,15 @@ import allPlanets from "../data/data.json"
     .primary-nav {
       &__menu {
         position: fixed;
-        top: 5.8125rem;
-        left: $container-min-margin-inline-small-screens;
-        right: $container-min-margin-inline-small-screens;
+        z-index: 10;
+        top: 5.3rem;
+        left: 0;
+        right: 0;
+        padding-inline-start: $container-min-margin-inline-small-screens;
+        padding-inline-end: $container-min-margin-inline-small-screens;
+        padding-block-start: 0.5125rem;
         bottom: 0;
+        background-color: $color-neutral-900;
         translate: 100vw 0;
         transition: translate 0.5s ease-in-out;
       }
