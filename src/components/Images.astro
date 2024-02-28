@@ -1,0 +1,71 @@
+---
+// Library imports
+import { Image } from "astro:assets"
+
+// Type imports
+import type { PlanetData } from "./PlanetUI.astro"
+import type { ImageMetadata } from "astro"
+
+type Props = {
+  planetData: PlanetData
+}
+
+const { planetData } = Astro.props
+
+const imagePlanet = planetData.images.planet
+const imageInternal = planetData.images.internal
+const imageGeology = planetData.images.geology
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/*.{png,svg}"
+)
+
+checkImage(imagePlanet)
+checkImage(imageInternal)
+checkImage(imageGeology)
+
+function checkImage(imagePath: string) {
+  if (!images[imagePath])
+    throw new Error(
+      `"${imagePath}" does not exist in glob: "src/assets/*.{png,svg}"`
+    )
+}
+---
+
+<div class="images">
+  <Image
+    src={images[imagePlanet]()}
+    alt=`Illustration of ${planetData.name}`
+    class="image-planet"
+  />
+  <Image
+    src={images[imageInternal]()}
+    alt=`sliced Illustration of ${planetData.name} showing the internal structure`
+    class="image-internal"
+  />
+  <Image
+    src={images[imageGeology]()}
+    alt=`surface of ${planetData.name}`
+    class="image-geology"
+    width="163"
+    height="199"
+  />
+</div>
+
+<style lang="scss">
+  @use "../sass/abstracts" as *;
+
+  .images {
+    display: grid;
+    grid-template-areas: "stack";
+    place-items: center;
+
+    > * {
+      grid-area: stack;
+    }
+
+    .image-geology {
+      align-self: end;
+    }
+  }
+</style>
