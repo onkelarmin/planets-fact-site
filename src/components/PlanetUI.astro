@@ -1,6 +1,7 @@
 ---
 // Component imports
 import Buttons from "./Buttons.astro"
+import Info from "./Info.astro"
 import Header from "./Header.astro"
 import Images from "./Images.astro"
 
@@ -39,6 +40,7 @@ const planetColor = `var(--accent-${planetData.name.toLowerCase()}-400)`
 <main class="container">
   <Buttons planetColor={planetColor} />
   <Images planetData={planetData} />
+  <Info planetData={planetData} />
 
   <div class="content"></div>
 
@@ -52,27 +54,70 @@ const planetColor = `var(--accent-${planetData.name.toLowerCase()}-400)`
 </style>
 
 <script>
-  const allBtns = document.querySelectorAll(
-    ".btn"
-  )! as NodeListOf<HTMLButtonElement>
+  // Variables
+  const allBtns = [...document.querySelectorAll(".btn")] as HTMLButtonElement[]
+  const allImgs = [...document.querySelectorAll(".img")] as HTMLImageElement[]
+  const allInfo = [
+    ...document.querySelectorAll(".info__group"),
+  ] as HTMLElement[]
 
+  // Event-handler
   allBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       if (e.target) {
-        const clickedBtn = e.target.closest(".btn") as HTMLButtonElement
-        handleButtonClick(clickedBtn)
+        const clickedEl = e.target as HTMLElement
+        const clickedBtn = clickedEl.closest("button")
+        if (clickedBtn) handleButtonClick(clickedBtn)
       }
     })
   })
 
+  // Functions
   function handleButtonClick(clickedBtn: HTMLButtonElement) {
-    if (clickedBtn.getAttribute("aria-selected") === "true") {
-      return
+    if (clickedBtn.getAttribute("aria-selected") === "true") return
+
+    const category = clickedBtn.querySelector(".category")?.textContent
+
+    // handle buttons
+    allBtns.forEach((btn) => {
+      btn.setAttribute("aria-selected", "false")
+    })
+    clickedBtn.setAttribute("aria-selected", "true")
+
+    // handle images
+    if (category === "structure") {
+      showImage("structure")
+      hideImage("geology")
+    } else if (category === "geology") {
+      showImage("geology")
+      hideImage("structure")
     } else {
-      allBtns.forEach((btn) => {
-        btn.setAttribute("aria-selected", "false")
-      })
-      clickedBtn.setAttribute("aria-selected", "true")
+      hideImage("structure")
+      hideImage("geology")
     }
+
+    // handle info
+    allInfo.forEach((info) => {
+      info.setAttribute("aria-hidden", "true")
+    })
+    const currInfo = allInfo.filter(
+      (info) => info.getAttribute("data-category") === category
+    )[0]
+    currInfo.setAttribute("aria-hidden", "false")
+  }
+
+  // Helper functions
+  function hideImage(imgCategory: string) {
+    const img = allImgs.filter(
+      (img) => img.getAttribute("data-category") === imgCategory
+    )[0]
+    img.setAttribute("aria-hidden", "true")
+  }
+
+  function showImage(imgCategory: string) {
+    const img = allImgs.filter(
+      (img) => img.getAttribute("data-category") === imgCategory
+    )[0]
+    img.setAttribute("aria-hidden", "false")
   }
 </script>

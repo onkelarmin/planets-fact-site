@@ -1,0 +1,116 @@
+---
+// Library imports
+import { Icon } from "astro-icon/components"
+
+// Type imports
+import type { PlanetData } from "./PlanetUI.astro"
+
+type Props = {
+  planetData: PlanetData
+}
+
+const { planetData } = Astro.props
+---
+
+<div class="info">
+  <h1 class="heading-1">{planetData.name}</h1>
+  <div class="inner">
+    <div class="info__group" data-category="overview">
+      <p class="content">{planetData.overview.content}</p>
+      <p class="link">
+        <span>Source :</span><a href={planetData.overview.source}>
+          Wikipedia <Icon name="source" size={12} /></a
+        >
+      </p>
+    </div>
+    <div class="info__group" data-category="structure" aria-hidden="true">
+      <p class="content">{planetData.structure.content}</p>
+      <p class="link">
+        <span>Source :</span><a href={planetData.structure.source}>
+          Wikipedia <Icon name="source" size={12} /></a
+        >
+      </p>
+    </div>
+    <div class="info__group" data-category="geology" aria-hidden="true">
+      <p class="content">{planetData.geology.content}</p>
+      <p class="link">
+        <span>Source :</span><a href={planetData.geology.source}>
+          Wikipedia <Icon name="source" size={12} /></a
+        >
+      </p>
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  @use "../sass/abstracts" as *;
+  .info {
+    --spacing-content: 1rem;
+    --spacing-link: 2rem;
+
+    text-align: center;
+
+    .inner {
+      display: grid;
+      grid-template-areas: stack;
+
+      > * {
+        grid-area: stack;
+      }
+    }
+
+    &__group {
+      &[aria-hidden="true"] {
+        opacity: 0;
+        transition: opacity 300ms ease-in;
+      }
+      &[aria-hidden="false"] {
+        opacity: 1;
+        transition: opacity 300ms ease-in 150ms;
+      }
+    }
+
+    .content {
+      margin-block-start: var(--spacing-content);
+    }
+
+    .link {
+      display: flex;
+      justify-content: center;
+      gap: 0.25rem;
+      margin-block-start: var(--spacing-link);
+
+      span {
+        opacity: 0.5;
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        color: inherit;
+        font-weight: $font-weight-bold;
+        opacity: 0.5;
+        transition: opacity 150ms ease-in;
+
+        &:is(:hover, :focus-within) {
+          opacity: 1;
+        }
+      }
+    }
+
+    @include mq(medium) {
+      --spacing-content: 1.5rem;
+
+      text-align: start;
+
+      .link {
+        justify-content: start;
+      }
+    }
+
+    @include mq(large) {
+      --spacing-link: 1.5rem;
+    }
+  }
+</style>

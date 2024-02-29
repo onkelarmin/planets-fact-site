@@ -3,13 +3,13 @@ $font-family-accent: 'Antonio', system-ui, sans-serif;
 
 $font-sizes: (
   'small': (
-    '900': 5rem, // Heading 1
-    '700': 2.5rem, // Heading 2
+    '900': 2.5rem, // Heading 1
+    '700': 1.25rem, // Heading 2
     '600': 1.75rem, // Logo
     '400': 0.6875rem, // Body
-    '300': 0.75rem, // Heading 3 / Buttons
+    '300': 0.5625rem, // Heading 3 / Buttons
     '200': 0.9375rem, // Nav-Links
-    '100': 0.6875rem, // Heading 4
+    '100': 0.5rem, // Heading 4
   ),
   'medium': (
     '900': 3rem, // Heading 1
@@ -21,13 +21,13 @@ $font-sizes: (
     '100': 0.5rem, // Heading 4
   ),
   'large': (
-    '900': 2.5rem, // Heading 1
-    '700': 1.25rem, // Heading 2
+    '900': 5rem, // Heading 1
+    '700': 2.5rem, // Heading 2
     '600': 1.75rem,  // Logo
     '400': 0.875rem, // Body
-    '300': 0.5625rem, // Heading 3 / Buttons
+    '300': 0.75rem, // Heading 3 / Buttons
     '200': 0.6875rem, // Nav-Links
-    '100': 0.5rem, // Heading 4
+    '100': 0.6875rem, // Heading 4
   ),
 );
 

@@ -36,17 +36,21 @@ function checkImage(imagePath: string) {
   <Image
     src={images[imagePlanet]()}
     alt=`Illustration of ${planetData.name}`
-    class="image-planet"
+    data-category="overview"
   />
   <Image
     src={images[imageInternal]()}
     alt=`sliced Illustration of ${planetData.name} showing the internal structure`
-    class="image-internal"
+    class="img"
+    data-category="structure"
+    aria-hidden="true"
   />
   <Image
     src={images[imageGeology]()}
     alt=`surface of ${planetData.name}`
-    class="image-geology"
+    class="img"
+    data-category="geology"
+    aria-hidden="true"
     width="163"
     height="199"
   />
@@ -64,7 +68,16 @@ function checkImage(imagePath: string) {
       grid-area: stack;
     }
 
-    .image-geology {
+    [aria-hidden="true"] {
+      opacity: 0;
+      transition: opacity 300ms ease-in;
+    }
+    [aria-hidden="false"] {
+      opacity: 1;
+      transition: opacity 300ms ease-in 150ms;
+    }
+
+    [data-category="geology"] {
       align-self: end;
     }
   }
