@@ -4,6 +4,7 @@ import Buttons from "./Buttons.astro"
 import Info from "./Info.astro"
 import Header from "./Header.astro"
 import Images from "./Images.astro"
+import Stats from "./Stats.astro"
 
 type Subcategory = {
   content: string
@@ -23,6 +24,7 @@ export type PlanetData = {
     planet: string
     internal: string
     geology: string
+    size: string
   }
 }
 
@@ -41,15 +43,44 @@ const planetColor = `var(--accent-${planetData.name.toLowerCase()}-400)`
   <Buttons planetColor={planetColor} />
   <Images planetData={planetData} />
   <Info planetData={planetData} />
-
-  <div class="content"></div>
-
-  <div class="stats"></div>
+  <Stats planetData={planetData} />
 </main>
 
 <style lang="scss">
   @use "../sass/abstracts" as *;
+
   main {
+    display: grid;
+    grid-template-areas:
+      "buttons"
+      "images"
+      "info"
+      "stats";
+    gap: 1.75rem;
+    margin-block-start: 1.5rem;
+    margin-block-end: 3rem;
+
+    @include mq(medium) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas:
+        "images images"
+        "info buttons"
+        "stats stats";
+      gap: 1.75rem 4.25rem;
+      margin-block-start: 1.6875rem;
+      margin-block-end: 2.25rem;
+    }
+
+    @include mq(large) {
+      grid-template-columns: 2fr 1fr;
+      grid-template-areas:
+        "images info"
+        "images buttons"
+        "stats stats";
+      gap: 1.125rem 7rem;
+      margin-block-start: 4.375rem;
+      margin-block-end: 3.5rem;
+    }
   }
 </style>
 

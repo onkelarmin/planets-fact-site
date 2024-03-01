@@ -20,7 +20,8 @@
     "images": {
       "planet": "/src/assets/planet-mercury.svg",
       "internal": "/src/assets/planet-mercury-internal.svg",
-      "geology": "/src/assets/geology-mercury.png"
+      "geology": "/src/assets/geology-mercury.png",
+      "size": "43%"
     }
   },
   {
@@ -44,7 +45,8 @@
     "images": {
       "planet": "/src/assets/planet-venus.svg",
       "internal": "/src/assets/planet-venus-internal.svg",
-      "geology": "/src/assets/geology-venus.png"
+      "geology": "/src/assets/geology-venus.png",
+      "size": "60%"
     }
   },
   {
@@ -68,7 +70,8 @@
     "images": {
       "planet": "/src/assets/planet-earth.svg",
       "internal": "/src/assets/planet-earth-internal.svg",
-      "geology": "/src/assets/geology-earth.png"
+      "geology": "/src/assets/geology-earth.png",
+      "size": "67%"
     }
   },
   {
@@ -92,7 +95,8 @@
     "images": {
       "planet": "/src/assets/planet-mars.svg",
       "internal": "/src/assets/planet-mars-internal.svg",
-      "geology": "/src/assets/geology-mars.png"
+      "geology": "/src/assets/geology-mars.png",
+      "size": "50%"
     }
   },
   {
@@ -116,7 +120,8 @@
     "images": {
       "planet": "/src/assets/planet-jupiter.svg",
       "internal": "/src/assets/planet-jupiter-internal.svg",
-      "geology": "/src/assets/geology-jupiter.png"
+      "geology": "/src/assets/geology-jupiter.png",
+      "size": "87%"
     }
   },
   {
@@ -140,7 +145,8 @@
     "images": {
       "planet": "/src/assets/planet-saturn.svg",
       "internal": "/src/assets/planet-saturn-internal.svg",
-      "geology": "/src/assets/geology-saturn.png"
+      "geology": "/src/assets/geology-saturn.png",
+      "size": "100%"
     }
   },
   {
@@ -164,7 +170,8 @@
     "images": {
       "planet": "/src/assets/planet-uranus.svg",
       "internal": "/src/assets/planet-uranus-internal.svg",
-      "geology": "/src/assets/geology-uranus.png"
+      "geology": "/src/assets/geology-uranus.png",
+      "size": "68%"
     }
   },
   {
@@ -188,7 +195,8 @@
     "images": {
       "planet": "/src/assets/planet-neptune.svg",
       "internal": "/src/assets/planet-neptune-internal.svg",
-      "geology": "/src/assets/geology-neptune.png"
+      "geology": "/src/assets/geology-neptune.png",
+      "size": "67%"
     }
   }
 ]

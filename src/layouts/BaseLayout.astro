@@ -12,14 +12,12 @@ import "../sass/main.scss"
   </head>
   <body>
     <slot />
-  </body>
+  </body><style lang="scss">
+    body {
+      background-image: url("../assets/background-stars.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: top 32% center;
+    }
+  </style>
 </html>
-
-<style lang="scss">
-  body {
-    background-image: url("../assets/background-stars.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top 32% center;
-  }
-</style>

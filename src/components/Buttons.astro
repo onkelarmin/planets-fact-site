@@ -39,6 +39,8 @@ const { planetColor } = Astro.props
 <style lang="scss">
   @use "../sass/abstracts" as *;
   ul {
+    grid-area: buttons;
+
     display: flex;
     justify-content: space-between;
     position: relative;
@@ -56,11 +58,17 @@ const { planetColor } = Astro.props
 
     @include mq(medium) {
       flex-direction: column;
+      justify-content: center;
+
       gap: 1rem;
 
       &::after {
         display: none;
       }
+    }
+
+    @include mq(large) {
+      align-self: start;
     }
   }
 </style>

@@ -48,7 +48,13 @@ const { planetData } = Astro.props
     --spacing-content: 1rem;
     --spacing-link: 2rem;
 
+    grid-area: info;
+
     text-align: center;
+
+    @include mq(large) {
+      align-self: end;
+    }
 
     .inner {
       display: grid;

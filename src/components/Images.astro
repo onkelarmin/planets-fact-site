@@ -20,6 +20,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/*.{png,svg}"
 )
 
+const imageSize = planetData.images.size
+
 checkImage(imagePlanet)
 checkImage(imageInternal)
 checkImage(imageGeology)
@@ -51,18 +53,19 @@ function checkImage(imagePath: string) {
     class="img"
     data-category="geology"
     aria-hidden="true"
-    width="163"
-    height="199"
   />
 </div>
 
-<style lang="scss">
+<style lang="scss" define:vars={{ imageSize }}>
   @use "../sass/abstracts" as *;
 
   .images {
+    grid-area: images;
+
     display: grid;
     grid-template-areas: "stack";
     place-items: center;
+    aspect-ratio: 1;
 
     > * {
       grid-area: stack;
@@ -77,8 +80,14 @@ function checkImage(imagePath: string) {
       transition: opacity 300ms ease-in 150ms;
     }
 
+    [data-category="overview"],
+    [data-category="structure"] {
+      width: var(--imageSize);
+    }
+
     [data-category="geology"] {
-      align-self: end;
+      width: 24.5%;
+      margin-top: 55%;
     }
   }
 </style>
