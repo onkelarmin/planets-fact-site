@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from "astro:transitions"
 import "../sass/main.scss"
 ---
 
@@ -9,15 +10,17 @@ import "../sass/main.scss"
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>Frontend Mentor | Planets fact site</title>
+    <ViewTransitions />
   </head>
   <body>
     <slot />
-  </body><style lang="scss">
-    body {
-      background-image: url("../assets/background-stars.svg");
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: top 32% center;
-    }
-  </style>
+    <style lang="scss">
+      body {
+        background-image: url("../assets/background-stars.svg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top 32% center;
+      }
+    </style>
+  </body>
 </html>

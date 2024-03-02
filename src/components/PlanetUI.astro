@@ -57,7 +57,6 @@ const planetColor = `var(--accent-${planetData.name.toLowerCase()}-400)`
       "info"
       "stats";
     gap: 1.75rem;
-    margin-block-start: 1.5rem;
     margin-block-end: 3rem;
 
     @include mq(medium) {
@@ -85,70 +84,85 @@ const planetColor = `var(--accent-${planetData.name.toLowerCase()}-400)`
 </style>
 
 <script>
-  // Variables
-  const allBtns = [...document.querySelectorAll(".btn")] as HTMLButtonElement[]
-  const allImgs = [...document.querySelectorAll(".img")] as HTMLImageElement[]
-  const allInfo = [
-    ...document.querySelectorAll(".info__group"),
-  ] as HTMLElement[]
-
-  // Event-handler
-  allBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      if (e.target) {
-        const clickedEl = e.target as HTMLElement
-        const clickedBtn = clickedEl.closest("button")
-        if (clickedBtn) handleButtonClick(clickedBtn)
-      }
-    })
+  // Page load
+  window.addEventListener("DOMContentLoaded", () => {
+    handlePlanetUI()
   })
 
-  // Functions
-  function handleButtonClick(clickedBtn: HTMLButtonElement) {
-    if (clickedBtn.getAttribute("aria-selected") === "true") return
+  // View Transition
+  document.addEventListener("astro:after-swap", () => {
+    handlePlanetUI()
+  })
 
-    const category = clickedBtn.querySelector(".category")?.textContent
+  function handlePlanetUI() {
+    // Variables
+    const allBtns = [
+      ...document.querySelectorAll(".btn"),
+    ] as HTMLButtonElement[]
+    const allImgs = [...document.querySelectorAll(".img")] as HTMLImageElement[]
+    const allInfo = [
+      ...document.querySelectorAll(".info__group"),
+    ] as HTMLElement[]
 
-    // handle buttons
+    // Event-handler
     allBtns.forEach((btn) => {
-      btn.setAttribute("aria-selected", "false")
+      btn.addEventListener("click", (e) => {
+        if (e.target) {
+          const clickedEl = e.target as HTMLElement
+          const clickedBtn = clickedEl.closest("button")
+          if (clickedBtn) handleButtonClick(clickedBtn)
+        }
+      })
     })
-    clickedBtn.setAttribute("aria-selected", "true")
 
-    // handle images
-    if (category === "structure") {
-      showImage("structure")
-      hideImage("geology")
-    } else if (category === "geology") {
-      showImage("geology")
-      hideImage("structure")
-    } else {
-      hideImage("structure")
-      hideImage("geology")
+    // Functions
+    function handleButtonClick(clickedBtn: HTMLButtonElement) {
+      console.log("ok")
+      if (clickedBtn.getAttribute("aria-selected") === "true") return
+
+      const category = clickedBtn.querySelector(".category")?.textContent
+
+      // handle buttons
+      allBtns.forEach((btn) => {
+        btn.setAttribute("aria-selected", "false")
+      })
+      clickedBtn.setAttribute("aria-selected", "true")
+
+      // handle images
+      if (category === "structure") {
+        showImage("structure")
+        hideImage("geology")
+      } else if (category === "geology") {
+        showImage("geology")
+        hideImage("structure")
+      } else {
+        hideImage("structure")
+        hideImage("geology")
+      }
+
+      // handle info
+      allInfo.forEach((info) => {
+        info.setAttribute("aria-hidden", "true")
+      })
+      const currInfo = allInfo.filter(
+        (info) => info.getAttribute("data-category") === category
+      )[0]
+      currInfo.setAttribute("aria-hidden", "false")
     }
 
-    // handle info
-    allInfo.forEach((info) => {
-      info.setAttribute("aria-hidden", "true")
-    })
-    const currInfo = allInfo.filter(
-      (info) => info.getAttribute("data-category") === category
-    )[0]
-    currInfo.setAttribute("aria-hidden", "false")
-  }
+    // Helper functions
+    function hideImage(imgCategory: string) {
+      const img = allImgs.filter(
+        (img) => img.getAttribute("data-category") === imgCategory
+      )[0]
+      img.setAttribute("aria-hidden", "true")
+    }
 
-  // Helper functions
-  function hideImage(imgCategory: string) {
-    const img = allImgs.filter(
-      (img) => img.getAttribute("data-category") === imgCategory
-    )[0]
-    img.setAttribute("aria-hidden", "true")
-  }
-
-  function showImage(imgCategory: string) {
-    const img = allImgs.filter(
-      (img) => img.getAttribute("data-category") === imgCategory
-    )[0]
-    img.setAttribute("aria-hidden", "false")
+    function showImage(imgCategory: string) {
+      const img = allImgs.filter(
+        (img) => img.getAttribute("data-category") === imgCategory
+      )[0]
+      img.setAttribute("aria-hidden", "false")
+    }
   }
 </script>
