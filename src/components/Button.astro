@@ -48,11 +48,11 @@ const planetColor = color
       transition: transform 250ms ease-in;
     }
 
-    &[aria-selected="true"] {
+    &[data-selected="true"] {
       color: $color-neutral-000;
     }
 
-    &[aria-selected="true"]::after {
+    &[data-selected="true"]::after {
       transform: scaleY(1);
     }
 
@@ -81,11 +81,11 @@ const planetColor = color
         display: none;
       }
 
-      &[aria-selected="true"] {
+      &[data-selected="true"] {
         background-color: var(--planetColor);
       }
 
-      &:not([aria-selected="true"]):is(:hover, :focus-visible) {
+      &:not([data-selected="true"]):is(:hover, :focus-visible) {
         background-color: $color-neutral-700;
       }
     }

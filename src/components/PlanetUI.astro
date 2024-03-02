@@ -117,16 +117,15 @@ const planetColor = `var(--accent-${planetData.name.toLowerCase()}-400)`
 
     // Functions
     function handleButtonClick(clickedBtn: HTMLButtonElement) {
-      console.log("ok")
-      if (clickedBtn.getAttribute("aria-selected") === "true") return
+      if (clickedBtn.getAttribute("data-selected") === "true") return
 
       const category = clickedBtn.querySelector(".category")?.textContent
 
       // handle buttons
       allBtns.forEach((btn) => {
-        btn.setAttribute("aria-selected", "false")
+        btn.setAttribute("data-selected", "false")
       })
-      clickedBtn.setAttribute("aria-selected", "true")
+      clickedBtn.setAttribute("data-selected", "true")
 
       // handle images
       if (category === "structure") {
